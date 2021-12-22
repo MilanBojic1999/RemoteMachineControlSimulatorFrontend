@@ -2,11 +2,14 @@
 
 <div class="login">
   <mat-form-field>
-      <div>
-        Email: <input>
+      <div class="login-cell">
+        <p>Email:</p>
+        <input [(ngModel)]="email">
       </div>
-      <div>
-        Password: <input>
+      <br>
+      <div class="login-cell">
+        <p>Password:</p>
+        <input [(ngModel)]="password">
       </div>
   </mat-form-field>
 </div>
