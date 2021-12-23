@@ -7,3 +7,12 @@
 .login-cell{
   display: table-cell;
 }
+
+.login_inputs{
+  padding-bottom: 2rem;
+}
+
+.button-div{
+  display: flex;
+  float: right;
+}
