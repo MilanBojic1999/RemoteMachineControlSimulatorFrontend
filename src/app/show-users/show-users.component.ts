@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserDTO} from "../models/model";
+import {UseroService} from "../service/usero.service";
 
 @Component({
   selector: 'app-show-users',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowUsersComponent implements OnInit {
 
-  constructor() { }
+
+  users: UserDTO[];
+
+  constructor(private backend_service:UseroService) {
+    this.users = []
+  }
 
   ngOnInit(): void {
+    this.backend_service.getUsers().subscribe(res =>{
+      this.users = res;
+    });
   }
+
 
 }

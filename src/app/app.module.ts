@@ -12,6 +12,7 @@ import { ShowUsersComponent } from './show-users/show-users.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { AppRoutingModule } from './app-routing.module';
+import {MatTableModule} from "@angular/material/table";
 
 
 @NgModule({
@@ -23,14 +24,15 @@ import { AppRoutingModule } from './app-routing.module';
     AddUserComponent,
     EditUserComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        AppRoutingModule,
+        MatTableModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

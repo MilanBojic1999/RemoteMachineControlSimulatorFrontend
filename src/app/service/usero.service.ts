@@ -12,7 +12,7 @@ export class UseroService {
 
 
   constructor(private httpClient:HttpClient) {
-    console.log("Dandalion line is connecting...")
+    console.log("Backend line is connecting...")
   }
 
   getUsers(){
@@ -20,9 +20,18 @@ export class UseroService {
     if(jwt == null){
       throw new Error('Empty jwt token')
     }
-    let path = this.apiUrl + '/show/all'
-    return this.httpClient.get<UserDTO>(path,{
+    let path = this.apiUrl + '/show/all';
+    return this.httpClient.get<UserDTO[]>(path,{
       headers: new HttpHeaders().set('Authorization',jwt)
-    }).subscribe();
+    })
+  }
+
+  login(email:string,password:string){
+    let body = {'email':email,'password':password};
+    let path = this.apiUrl + '/login';
+
+    return this.httpClient.post(path,body,{
+      headers: new HttpHeaders().set("Content-Type","application/json")
+    });
   }
 }
