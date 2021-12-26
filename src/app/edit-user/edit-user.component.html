@@ -3,12 +3,11 @@
 <div class="user-info" [hidden]="!user">
 
 
-  <p>Test</p>
   <p>ID: {{user!.userId}}</p>
-  <p>Email:</p> <input [ngModel]="user!.email">
-  <p>First name:</p> <input [ngModel]="user!.firstname">
-  <p>Last name:</p> <input [ngModel]="user!.lastname">
-  <p>Password:</p> <input [ngModel]="user!.password">
+  <p>Email:</p> <input [(ngModel)]="user!.email">
+  <p>First name:</p> <input [(ngModel)]="user!.firstname">
+  <p>Last name:</p> <input [(ngModel)]="user!.lastname">
+  <p>Password:</p> <input [(ngModel)]="user!.password">
   <p>-----------------------------------------------</p>
   <p>Permissions</p>
 
@@ -25,7 +24,7 @@
 
 
 <div class="buttons">
-  <button class="btn"> Edit </button>
+  <button class="btn" (click)="edit_user()"> Edit </button>
 
-  <button class="btn"> Delete </button>
+  <button class="btn" (click)="delete_user()"> Delete </button>
 </div>

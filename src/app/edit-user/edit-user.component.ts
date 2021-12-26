@@ -38,4 +38,16 @@ export class EditUserComponent implements OnInit {
     console.log(event)
     console.log(this.permissions_selected)
   }
+
+  edit_user():void{
+    if(this.user?.email.length == 0 || this.user?.firstname.length == 0 || this.user?.lastname.length == 0){
+      return
+    }
+    console.log(this.user)
+
+  }
+
+  delete_user():void{
+    console.log('To delete: '+this.user?.userId);
+  }
 }

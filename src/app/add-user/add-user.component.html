@@ -1,1 +1,29 @@
 <p>add-user works!</p>
+
+
+<div class="user-info" [hidden]="!user">
+
+
+  <p>Email:</p> <input [(ngModel)]="user!.email">
+  <p>First name:</p> <input [(ngModel)]="user!.firstname">
+  <p>Last name:</p> <input [(ngModel)]="user!.lastname">
+  <p>Password:</p> <input [(ngModel)]="user!.password">
+  <p>-----------------------------------------------</p>
+  <p>Permissions</p>
+
+  <div *ngFor="let pp of permissions; let i=index" class="col-md-4 checkboxes">
+    <label>
+      <input type="checkbox" [(ngModel)]="permissions_selected[i]" (change)="onCheckChange($event)" class="my_checkbox">
+      {{permissions[i].value}}
+    </label>
+  </div>
+
+
+
+</div>
+
+
+<div class="buttons">
+  <button class="btn" (click)="insert()"> Add </button>
+
+</div>
