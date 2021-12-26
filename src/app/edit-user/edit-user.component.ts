@@ -12,11 +12,23 @@ export class EditUserComponent implements OnInit {
   permissions_string:string[] = ['CAN_READ_USERS','CAN_CREATE_USERS','CAN_UPDATE_USERS','CAN_DELETE_USERS'];
   permissions:Permission[] = [{ value: "CAN_READ_USERS" },{ value: "CAN_CREATE_USERS" }, { value: "CAN_UPDATE_USERS" }, { value: "CAN_DELETE_USERS" }]
 
-  permissions_selected:boolean[] = [false,true,false,false]
+  permissions_map:Map<string,number> = new Map<string, number>([['CAN_READ_USERS', 0],['CAN_CREATE_USERS', 1],['CAN_UPDATE_USERS', 2],['CAN_DELETE_USERS', 3 ]])
+
+  permissions_selected:boolean[] = [false,false,false,false]
 
   constructor() {
     this.user = {userId:-1,email:'123',firstname:'sd',lastname:'ssss',password:'pwd',permissions:[{ value: "CAN_READ_USERS" }]}
     console.log(this.permissions);
+
+    for(let user_per of this.user.permissions){
+      let index = this.permissions_map.get(user_per.value);
+      if(index == null){
+        console.log(user_per);
+        break;
+      }
+      this.permissions_selected[index] = true;
+    }
+
   }
 
   ngOnInit(): void {

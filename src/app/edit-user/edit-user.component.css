@@ -7,3 +7,25 @@ ul {
   list-style-type: none;
   margin-top: 4px;
 }
+
+.buttons{
+
+}
+
+.btn{
+  margin-left: 1rem;
+  border-color: #100110;
+}
+
+.checkboxes{
+  display: inline;
+  width: max-content;
+  height: 90px;
+  overflow-x: auto;
+}
+
+.my_checkbox{
+  margin-right: 0.1rem;
+  margin-left: 2rem;
+  color: red;
+}
