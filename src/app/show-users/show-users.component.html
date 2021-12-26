@@ -27,7 +27,7 @@
   </ng-container>
 
   <ng-container matColumnDef="edit">
-    <th mat-header-cell *matHeaderCellDef [ngClass]="'edit_col'"> Permissions </th>
+    <th mat-header-cell *matHeaderCellDef [ngClass]="'edit_col'"> Edit user </th>
     <td mat-cell *matCellDef="let u" [ngClass]="'edit_col'">
       <div class="button-div">
         <button (click)="edit(u)"> Edit </button>
@@ -35,6 +35,20 @@
     </td>
   </ng-container>
 
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef [ngClass]="'edit_col'"> Delete user </th>
+    <td mat-cell *matCellDef="let u" [ngClass]="'edit_col'">
+      <div class="button-div">
+        <button (click)="delete(u)"> Delete </button>
+      </div>
+    </td>
+  </ng-container>
+
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row,columns:displayedColumns;"></tr>
 </table>
+
+<div class="buttons">
+  <button class="btn" (click)="goToInsert()"> Add </button>
+
+</div>

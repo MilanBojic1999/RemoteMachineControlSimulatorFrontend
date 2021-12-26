@@ -13,7 +13,7 @@ export class ShowUsersComponent implements OnInit {
 
 
   users: UserDTO[];
-  displayedColumns: string[] = ['position','email','firstname','lastname','permissions','edit'];
+  displayedColumns: string[] = ['position','email','firstname','lastname','permissions','edit','delete'];
 
   constructor(private backend_service:UseroService, private selected_service:SelectedUserService, private router:Router) {
     this.users = []
@@ -43,4 +43,11 @@ export class ShowUsersComponent implements OnInit {
   }
 
 
+  goToInsert() {
+    this.router.navigate(['/insert']).then(r => console.log(r))
+  }
+
+  delete(user:UserDTO) {
+    console.log(user)
+  }
 }

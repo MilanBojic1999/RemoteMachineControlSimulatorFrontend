@@ -56,3 +56,11 @@ table {
   position: sticky;
 }
 
+.buttons{
+  margin: 3rem 0;
+}
+
+.btn{
+  margin-left: 1rem;
+  border-color: #100110;
+}
