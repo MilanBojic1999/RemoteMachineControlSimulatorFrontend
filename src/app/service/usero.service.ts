@@ -30,8 +30,10 @@ export class UseroService {
     let body = {'email':email,'password':password};
     let path = this.apiUrl + '/login';
 
-    return this.httpClient.post(path,body,{
+    return this.httpClient.post<string>(path,JSON.stringify(body),{
+
       headers: new HttpHeaders().set("Content-Type","application/json")
+
     });
   }
 }

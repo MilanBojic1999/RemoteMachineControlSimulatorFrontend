@@ -4,7 +4,7 @@ export interface Permission {
 }
 
 export interface UserDTO {
-  id:number;
+  userId:number;
   email:string;
   firstname:string;
   lastname:string;

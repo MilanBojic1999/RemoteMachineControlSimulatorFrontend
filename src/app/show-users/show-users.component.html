@@ -1,28 +1,40 @@
 <p>show-users works!</p>
 
-<table mat-table [dataSource]="users">
+<table mat-table [dataSource]="users" class="mat-elevation-z8">
   <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef> Id </th>
-    <td mat-cell *matCellDef="let u">{{u.id}}</td>
+    <th mat-header-cell *matHeaderCellDef [ngClass]="'id_col'"> Id </th>
+    <td mat-cell *matCellDef="let u" [ngClass]="'id_col'">{{u.userId}}</td>
   </ng-container>
 
   <ng-container matColumnDef="email">
-    <th mat-header-cell *matHeaderCellDef> Email </th>
-    <td mat-cell *matCellDef="let u">{{u.email}}</td>
+    <th mat-header-cell *matHeaderCellDef [ngClass]="'em_col'"> Email </th>
+    <td mat-cell *matCellDef="let u" [ngClass]="'em_col'" >{{u.email}}</td>
   </ng-container>
 
   <ng-container matColumnDef="firstname">
-    <th mat-header-cell *matHeaderCellDef> First name </th>
-    <td mat-cell *matCellDef="let u">{{u.firstname}}</td>
+    <th mat-header-cell *matHeaderCellDef [ngClass]="'fn_col'"> First name </th>
+    <td mat-cell *matCellDef="let u" [ngClass]="'fn_col'">{{u.firstname}}</td>
   </ng-container>
 
   <ng-container matColumnDef="lastname">
-    <th mat-header-cell *matHeaderCellDef> Last name </th>
-    <td mat-cell *matCellDef="let u">{{u.lastname}}</td>
+    <th mat-header-cell *matHeaderCellDef [ngClass]="'ln_col'"> Last name </th>
+    <td mat-cell *matCellDef="let u" [ngClass]="'ln_col'">{{u.lastname}}</td>
   </ng-container>
 
   <ng-container matColumnDef="permissions">
-    <th mat-header-cell *matHeaderCellDef> First name </th>
-    <td mat-cell *matCellDef="let u">{{u.permissions}}</td>
+    <th mat-header-cell *matHeaderCellDef [ngClass]="'perm_col'"> Permissions </th>
+    <td mat-cell *matCellDef="let u" [ngClass]="'perm_col'"> {{u.permissions}} </td>
   </ng-container>
+
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef [ngClass]="'edit_col'"> Permissions </th>
+    <td mat-cell *matCellDef="let u" [ngClass]="'edit_col'">
+      <div class="button-div">
+        <button (click)="edit(u)"> Edit </button>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row,columns:displayedColumns;"></tr>
 </table>

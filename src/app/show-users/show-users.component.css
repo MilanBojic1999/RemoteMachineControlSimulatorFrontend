@@ -1,0 +1,56 @@
+table {
+  width: 100%;
+}
+
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+  overflow-x: scroll;
+}
+
+.mat-row{
+  height: auto;
+}
+
+.mat-cell{
+  padding: 0 10px;
+  width: 300px;
+}
+
+.mat-header-cell {
+  align-content: center;
+}
+
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}
+
+.demo-row-is-clicked {
+  text-align: center;
+}
+
+
+.id_col{
+  max-width: 100px;
+}
+
+.em_col{
+  max-width: 150px;
+}
+
+.fn_col{
+  max-width: 100px;
+}
+
+.ln_col{
+  max-width: 100px;
+}
+
+.perm_col{
+  padding: 0 2rem;
+  overflow-x: scroll;
+  position: sticky;
+}
+

@@ -13,7 +13,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { AppRoutingModule } from './app-routing.module';
 import {MatTableModule} from "@angular/material/table";
-
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import {MatTableModule} from "@angular/material/table";
         MatInputModule,
         FormsModule,
         AppRoutingModule,
-        MatTableModule
+        MatTableModule,
+        HttpClientModule
     ],
   providers: [],
   bootstrap: [AppComponent]

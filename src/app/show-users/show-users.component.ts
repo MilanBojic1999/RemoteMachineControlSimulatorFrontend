@@ -11,6 +11,7 @@ export class ShowUsersComponent implements OnInit {
 
 
   users: UserDTO[];
+  displayedColumns: string[] = ['position','email','firstname','lastname','permissions','edit'];
 
   constructor(private backend_service:UseroService) {
     this.users = []
@@ -22,5 +23,8 @@ export class ShowUsersComponent implements OnInit {
     });
   }
 
+  public edit(user:UserDTO){
+    console.log(user)
+  }
 
 }
