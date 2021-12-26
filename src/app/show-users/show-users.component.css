@@ -24,11 +24,13 @@ table {
 
 
 .mat-row:hover .mat-cell {
-  border-color: currentColor;
+  border-color: black;
+  border-top: #100110;
+  background-color: #efefef;
 }
 
-.demo-row-is-clicked {
-  text-align: center;
+.row-is-clicked {
+  font-weight: bold;
 }
 
 

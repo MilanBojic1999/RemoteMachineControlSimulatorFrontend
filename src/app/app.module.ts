@@ -14,6 +14,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { AppRoutingModule } from './app-routing.module';
 import {MatTableModule} from "@angular/material/table";
 import {HttpClientModule} from "@angular/common/http";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {HttpClientModule} from "@angular/common/http";
         FormsModule,
         AppRoutingModule,
         MatTableModule,
-        HttpClientModule
+        HttpClientModule,
+        MatCheckboxModule
     ],
   providers: [],
   bootstrap: [AppComponent]

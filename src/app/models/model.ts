@@ -12,6 +12,7 @@ export interface UserDTO {
 }
 
 export interface UserFull {
+  userId:number;
   email:string;
   firstname:string;
   lastname:string;

@@ -1,1 +1,39 @@
 <p>edit-user works!</p>
+
+<div class="user-info" [hidden]="!user">
+
+
+  <section>
+    <p>Select</p>
+    <span>
+      <ul>
+        <li *ngFor="let pp of this.permissions; let i=index" class="col-md-2">
+          {{i}}
+          <mat-checkbox [(ngModel)]="this.permissions_selected[i]"
+                        [color]="'black'">
+          </mat-checkbox>
+
+        </li>
+      </ul>
+
+    </span>
+  </section>
+
+  <div *ngFor="let pp of permissions; let i=index" class="col-md-2">
+    <label>
+      <input type="checkbox" [(ngModel)]="permissions_selected[i]" (change)="onCheckChange($event)">
+      {{permissions[i].value}}
+    </label>
+  </div>
+
+  <p>Test</p>
+  <p>ID: {{user!.userId}}</p>
+  <p>Email:</p> <input [ngModel]="user!.email">
+  <p>First name:</p> <input [ngModel]="user!.firstname">
+  <p>Last name:</p> <input [ngModel]="user!.lastname">
+  <p>Password:</p> <input [ngModel]="user!.password">
+
+
+
+
+</div>
