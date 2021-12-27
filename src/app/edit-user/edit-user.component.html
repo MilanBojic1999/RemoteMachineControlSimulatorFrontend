@@ -24,7 +24,7 @@
 
 
 <div class="buttons">
-  <button class="btn" (click)="edit_user()"> Edit </button>
+  <button class="btn" (click)="edit_user()" [disabled]="!containsPermission('CAN_UPDATE_USERS')"> Edit </button>
 
-  <button class="btn" (click)="delete_user()"> Delete </button>
+  <button class="btn" (click)="delete_user()" [disabled]="!containsPermission('CAN_DELETE_USERS')"> Delete </button>
 </div>

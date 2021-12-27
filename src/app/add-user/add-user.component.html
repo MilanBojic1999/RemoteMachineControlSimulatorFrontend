@@ -24,6 +24,6 @@
 
 
 <div class="buttons">
-  <button class="btn" (click)="insert()"> Add </button>
+  <button class="btn" (click)="insert()" [disabled]="!containsPermission('CAN_CREATE_USERS')"> Add </button>
 
 </div>

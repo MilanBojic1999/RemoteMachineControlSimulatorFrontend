@@ -30,7 +30,7 @@
     <th mat-header-cell *matHeaderCellDef [ngClass]="'edit_col'"> Edit user </th>
     <td mat-cell *matCellDef="let u" [ngClass]="'edit_col'">
       <div class="button-div">
-        <button (click)="edit(u)"> Edit </button>
+        <button (click)="edit(u)" [disabled]="!containsPermission('CAN_UPDATE_USERS')"> Edit </button>
       </div>
     </td>
   </ng-container>
@@ -39,7 +39,7 @@
     <th mat-header-cell *matHeaderCellDef [ngClass]="'edit_col'"> Delete user </th>
     <td mat-cell *matCellDef="let u" [ngClass]="'edit_col'">
       <div class="button-div">
-        <button (click)="delete(u)"> Delete </button>
+        <button (click)="delete(u)" [disabled]="!containsPermission('CAN_DELETE_USERS')"> Delete </button>
       </div>
     </td>
   </ng-container>
@@ -49,6 +49,6 @@
 </table>
 
 <div class="buttons">
-  <button class="btn" (click)="goToInsert()"> Add </button>
+  <button class="btn" (click)="goToInsert()" [disabled]="!containsPermission('CAN_CREATE_USERS')"> Add </button>
 
 </div>

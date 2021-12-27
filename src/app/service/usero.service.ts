@@ -80,4 +80,15 @@ export class UseroService {
     });
   }
 
+
+    permissionsFromJWT(jwt: string | null): string[] {
+    if(jwt==null)
+      return []
+    let a = jwt.split('by ')[1];
+    a = a.split('.')[1]
+    a = atob(a);
+    let dict = JSON.parse(a);
+    return dict['permissions']
+  }
+
 }

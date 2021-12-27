@@ -4,10 +4,10 @@
       <a [routerLink]="'/home'" class="navbar-brand"> Home </a>
       <div class="collapse navbar-collapse">
         <div class="navbar-nav">
-          <a [routerLink]="'/show'" class="nav-link active"> Show Users</a>
+          <a [routerLink]="'/show'" class="nav-link active" [class.disabled]="!containsPermission('CAN_READ_USERS')"> Show Users</a>
         </div>
         <div class="navbar-nav">
-          <a [routerLink]="'/insert'" class="nav-link active"> Insert Users</a>
+          <a [routerLink]="'/insert'" class="nav-link active" [class.disabled]="!containsPermission('CAN_CREATE_USERS')"> Insert Users</a>
         </div>
       </div>
     </div>

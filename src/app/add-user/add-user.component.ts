@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Permission, UserFull} from "../models/model";
+import {UseroService} from "../service/usero.service";
 
 @Component({
   selector: 'app-add-user',
@@ -17,7 +18,7 @@ export class AddUserComponent implements OnInit {
   permissions_selected:boolean[] = [false,false,false,false]
 
 
-  constructor() {
+  constructor(private service:UseroService) {
     this.user = {userId:0,email:'',firstname:'',lastname:'',password:'',permissions:[]}
   }
 
@@ -31,5 +32,12 @@ export class AddUserComponent implements OnInit {
   onCheckChange(event: any){
     console.log(event)
     console.log(this.permissions_selected)
+  }
+
+  containsPermission(permission:string):boolean{
+    if(localStorage.getItem('jwt') == null)
+      return false;
+    let permissionList = this.service.permissionsFromJWT(localStorage.getItem('jwt'));
+    return permissionList.includes(permission)
   }
 }

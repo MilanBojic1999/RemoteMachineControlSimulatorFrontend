@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Permission, UserDTO, UserFull} from "../models/model";
+import {UserDTO, UserFull} from "../models/model";
 import {UseroService} from "../service/usero.service";
 import {SelectedUserService} from "../service/selected-user.service";
 import {Router} from "@angular/router";
@@ -59,5 +59,12 @@ export class ShowUsersComponent implements OnInit {
     this.backend_service.deleteUser(user)?.subscribe(() => {
       this.router.navigate(['/home']).then();
     })
+  }
+
+  containsPermission(permission:string):boolean{
+    if(localStorage.getItem('jwt') == null)
+      return false;
+    let permissionList = this.backend_service.permissionsFromJWT(localStorage.getItem('jwt'));
+    return permissionList.includes(permission)
   }
 }
