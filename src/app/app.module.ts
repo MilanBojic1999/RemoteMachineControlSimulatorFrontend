@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {MatTableModule} from "@angular/material/table";
 import {HttpClientModule} from "@angular/common/http";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { PermissionsPipePipe } from './pipes/permissions-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     HomeComponent,
     ShowUsersComponent,
     AddUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    PermissionsPipePipe
   ],
     imports: [
         BrowserModule,
