@@ -25,4 +25,9 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  logout() {
+    localStorage.removeItem("jwt")
+    this.router.navigate(['/login']).then(r => console.log(r))
+
+  }
 }

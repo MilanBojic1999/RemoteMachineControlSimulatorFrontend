@@ -26,7 +26,15 @@ export class AddUserComponent implements OnInit {
   }
 
   insert() {
-
+    for(let i=0;i<4;i++){
+      if(this.permissions_selected[i]){
+        this.user.permissions.push(this.permissions[i]);
+      }
+    }
+    console.log(this.user);
+    this.service.insertUser(this.user)?.subscribe(res => {
+      console.log(res);
+    })
   }
 
   onCheckChange(event: any){

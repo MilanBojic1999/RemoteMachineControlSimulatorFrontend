@@ -59,10 +59,18 @@ export class UseroService {
 
     let path = this.apiUrl + '/edit'
 
-    let body = JSON.stringify(user);
+    let user_tmp = {userId:user.userId,firstname:user.firstname,lastname:user.lastname,email:user.email,password:user.password,permissions:user.permissions.map<string>(r => {
+        if(r==null){
+          return '';
+        }
+        return r.value;
+      })}
+
+    let body = JSON.stringify(user_tmp);
 
     return this.httpClient.post<UserFull>(path,body,{
       headers: new HttpHeaders().set('Authorization',jwt)
+        .set("Content-Type","application/json")
     });
   }
 
@@ -73,22 +81,26 @@ export class UseroService {
 
     let path = this.apiUrl + '/add'
 
-    let body = JSON.stringify(user);
+    let user_tmp = {userId:user.userId,firstname:user.firstname,lastname:user.lastname,email:user.email,password:user.password,permissions:user.permissions.map<string>(r => {
+        return r.value;
+      })}
+    let body = JSON.stringify(user_tmp);
 
     return this.httpClient.post<UserFull>(path,body,{
       headers: new HttpHeaders().set('Authorization',jwt)
+        .set("Content-Type","application/json")
     });
   }
 
 
     permissionsFromJWT(jwt: string | null): string[] {
-    if(jwt==null)
-      return []
-    let a = jwt.split('by ')[1];
-    a = a.split('.')[1]
-    a = atob(a);
-    let dict = JSON.parse(a);
-    return dict['permissions']
-  }
+      if(jwt==null)
+        return []
+      let a = jwt.split('by ')[1];
+      a = a.split('.')[1]
+      a = atob(a);
+      let dict = JSON.parse(a);
+      return dict['permissions']
+    }
 
 }

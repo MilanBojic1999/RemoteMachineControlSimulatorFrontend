@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserDTO, UserFull} from "../models/model";
+import {Permission, UserDTO, UserFull} from "../models/model";
 import {UseroService} from "../service/usero.service";
 import {SelectedUserService} from "../service/selected-user.service";
 import {Router} from "@angular/router";
@@ -26,14 +26,14 @@ export class ShowUsersComponent implements OnInit {
   }
 
   public edit(user:UserDTO){
-    console.log(user)
+    console.log('To edit:',user);
     const full_user: UserFull = {
       userId: user.userId,
       email: user.email,
       firstname: user.firstname,
       lastname: user.lastname,
       password: "",
-      permissions: user.permissions
+      permissions: user.permissions.map<Permission>(val => {return {value:val.toString()}})
     }
 
     this.selected_service.setUser(full_user);
