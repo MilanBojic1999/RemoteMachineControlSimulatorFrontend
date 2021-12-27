@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {UserDTO} from "../models/model";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {UserDTO, UserFull} from "../models/model";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,17 @@ export class UseroService {
     console.log("Backend line is connecting...")
   }
 
+  login(email:string,password:string){
+    let body = {'email':email,'password':password};
+    let path = this.apiUrl + '/login';
+
+    return this.httpClient.post<string>(path,JSON.stringify(body),{
+
+      headers: new HttpHeaders().set("Content-Type","application/json")
+
+    });
+  }
+
   getUsers(){
     let jwt =  localStorage.getItem('jwt');
     if(jwt == null){
@@ -26,14 +37,47 @@ export class UseroService {
     })
   }
 
-  login(email:string,password:string){
-    let body = {'email':email,'password':password};
-    let path = this.apiUrl + '/login';
 
-    return this.httpClient.post<string>(path,JSON.stringify(body),{
 
-      headers: new HttpHeaders().set("Content-Type","application/json")
+  deleteUser(user:UserFull){
+    let jwt =  localStorage.getItem('jwt');
+    if(jwt == null)
+      return null;
+    let id = user.userId;
+    let path = this.apiUrl + '/edit/delete';
 
+    return this.httpClient.post<any>(path,null,{
+      headers: new HttpHeaders().set('Authorization',jwt),
+      params: new HttpParams().set("id",id)
     });
   }
+
+  updateUser(user:UserFull){
+    let jwt =  localStorage.getItem('jwt');
+    if(jwt == null)
+      return null;
+
+    let path = this.apiUrl + '/edit'
+
+    let body = JSON.stringify(user);
+
+    return this.httpClient.post<UserFull>(path,body,{
+      headers: new HttpHeaders().set('Authorization',jwt)
+    });
+  }
+
+  insertUser(user:UserFull){
+    let jwt =  localStorage.getItem('jwt');
+    if(jwt == null)
+      return null;
+
+    let path = this.apiUrl + '/add'
+
+    let body = JSON.stringify(user);
+
+    return this.httpClient.post<UserFull>(path,body,{
+      headers: new HttpHeaders().set('Authorization',jwt)
+    });
+  }
+
 }

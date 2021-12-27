@@ -19,6 +19,9 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['/login']).then(r => console.log(r))
     }else{
       this.token = <string>localStorage.getItem("jwt")
+      let a = this.token.split('by ')[1];
+      a = a.split('.')[1]
+      this.token = atob(a);
     }
   }
 

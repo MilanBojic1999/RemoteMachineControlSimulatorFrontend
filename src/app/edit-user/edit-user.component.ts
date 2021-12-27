@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Permission, UserFull} from "../models/model";
+import {UseroService} from "../service/usero.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-edit-user',
@@ -16,7 +18,7 @@ export class EditUserComponent implements OnInit {
 
   permissions_selected:boolean[] = [false,false,false,false]
 
-  constructor() {
+  constructor(private service:UseroService,private router:Router) {
     this.user = {userId:-1,email:'123',firstname:'sd',lastname:'ssss',password:'pwd',permissions:[{ value: "CAN_READ_USERS" }]}
     console.log(this.permissions);
 
@@ -40,14 +42,25 @@ export class EditUserComponent implements OnInit {
   }
 
   edit_user():void{
-    if(this.user?.email.length == 0 || this.user?.firstname.length == 0 || this.user?.lastname.length == 0){
+    if(this.user==null || this.user?.email.length == 0 || this.user?.firstname.length == 0 || this.user?.lastname.length == 0){
       return
     }
     console.log(this.user)
-
+    this.service.updateUser(this.user)?.subscribe(res => {
+      this.user = res;
+      window.location.reload();
+    })
   }
 
   delete_user():void{
     console.log('To delete: '+this.user?.userId);
+    if(this.user==null){
+      return;
+    }
+
+    this.service.deleteUser(this.user)?.subscribe(() => {
+      this.router.navigate(['/home']).then();
+    })
+
   }
 }

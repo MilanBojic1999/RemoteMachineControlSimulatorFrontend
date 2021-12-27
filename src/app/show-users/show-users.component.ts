@@ -47,7 +47,17 @@ export class ShowUsersComponent implements OnInit {
     this.router.navigate(['/insert']).then(r => console.log(r))
   }
 
-  delete(user:UserDTO) {
+  delete(userDTO:UserDTO) {
+    if(userDTO==null){
+      return;
+    }
+    let user:UserFull = {userId:userDTO.userId,email:'',firstname:'',lastname:'',password:'',permissions:[]}
     console.log(user)
+    console.log('To delete: '+user?.userId);
+
+
+    this.backend_service.deleteUser(user)?.subscribe(() => {
+      this.router.navigate(['/home']).then();
+    })
   }
 }
