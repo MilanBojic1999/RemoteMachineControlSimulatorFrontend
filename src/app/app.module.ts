@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {MatTableModule} from "@angular/material/table";
 import {HttpClientModule} from "@angular/common/http";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
         AppRoutingModule,
         MatTableModule,
         HttpClientModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatSnackBarModule
     ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
 import {UserDTO, UserFull} from "../models/model";
+import {catchError, map} from "rxjs/operators";
+import {of, throwError} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +25,12 @@ export class UseroService {
 
       headers: new HttpHeaders().set("Content-Type","application/json")
 
-    });
+    }).pipe(catchError(this.handleError));
+  }
+
+  private handleError(error:HttpErrorResponse){
+    console.log(error.status)
+    return throwError("somzhing happ")
   }
 
   getUsers(){
@@ -89,7 +96,10 @@ export class UseroService {
     return this.httpClient.post<UserFull>(path,body,{
       headers: new HttpHeaders().set('Authorization',jwt)
         .set("Content-Type","application/json")
-    });
+    }).pipe(map(response => {
+      catchError(() => {return of(false)})
+      return response != null;
+    }))
   }
 
 

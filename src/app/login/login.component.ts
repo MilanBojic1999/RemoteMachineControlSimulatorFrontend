@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UseroService} from "../service/usero.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {error} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit {
   password:string;
   result:string;
 
-  constructor(private route: ActivatedRoute, private router:Router,private service:UseroService) {
+  constructor(private route: ActivatedRoute, private router:Router,private service:UseroService,private snackBar: MatSnackBar) {
     this.email = "root@gmail.com";
     this.password = "root";
     this.result = "";
@@ -28,6 +30,7 @@ export class LoginComponent implements OnInit {
       return
     this.service.login(this.email,this.password).subscribe(res => {
 
+      console.log("WHat",res)
       res = Object.values(res)[0];
       console.log(res);
       this.result = res
@@ -38,7 +41,10 @@ export class LoginComponent implements OnInit {
       }
       localStorage.setItem("jwt",this.result);
       this.router.navigate(["/home"]).then()
-    })
+    },
+      error => {
+        this.snackBar.open("We couldn't login you","OK");
+      })
 
   }
 }
