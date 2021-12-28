@@ -71,4 +71,9 @@ export class ShowUsersComponent implements OnInit {
     let permissionList = this.backend_service.permissionsFromJWT(localStorage.getItem('jwt'));
     return permissionList.includes(permission)
   }
+
+  edit_row(row: UserDTO) {
+    console.log('Clicked',row);
+    this.edit(row);
+  }
 }

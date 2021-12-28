@@ -45,7 +45,7 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row,columns:displayedColumns;"></tr>
+  <tr mat-row (click)="edit_row(row)" [class.disabled]="!containsPermission('CAN_UPDATE_USERS')" *matRowDef="let row,columns:displayedColumns;"></tr>
 </table>
 
 <div class="buttons">
