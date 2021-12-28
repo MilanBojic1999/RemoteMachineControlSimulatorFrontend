@@ -3,6 +3,7 @@ import {Permission, UserDTO, UserFull} from "../models/model";
 import {UseroService} from "../service/usero.service";
 import {SelectedUserService} from "../service/selected-user.service";
 import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-show-users',
@@ -15,7 +16,7 @@ export class ShowUsersComponent implements OnInit {
   users: UserDTO[];
   displayedColumns: string[] = ['position','email','firstname','lastname','permissions','edit','delete'];
 
-  constructor(private backend_service:UseroService, private selected_service:SelectedUserService, private router:Router) {
+  constructor(private snackBar: MatSnackBar,private backend_service:UseroService, private selected_service:SelectedUserService, private router:Router) {
     this.users = []
   }
 
@@ -58,7 +59,10 @@ export class ShowUsersComponent implements OnInit {
 
     this.backend_service.deleteUser(user)?.subscribe(() => {
       this.router.navigate(['/home']).then();
-    })
+    },
+      () => {
+          this.snackBar.open("Couldn't delete user","OK");
+      })
   }
 
   containsPermission(permission:string):boolean{

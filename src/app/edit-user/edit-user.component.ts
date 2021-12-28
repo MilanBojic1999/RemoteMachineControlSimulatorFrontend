@@ -3,6 +3,7 @@ import {Permission, UserFull} from "../models/model";
 import {UseroService} from "../service/usero.service";
 import {Router} from "@angular/router";
 import {SelectedUserService} from "../service/selected-user.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-edit-user',
@@ -21,7 +22,7 @@ export class EditUserComponent implements OnInit {
 
   editingCurrentUser:boolean = false;
 
-  constructor(private service:UseroService,private selected_service:SelectedUserService,private router:Router) {
+  constructor(private service:UseroService,private selected_service:SelectedUserService,private router:Router,private snackBar: MatSnackBar) {
     this.user = {userId:-1,email:'123',firstname:'sd',lastname:'ssss',password:'pwd',permissions:[{ value: "CAN_READ_USERS" }]}
     console.log(this.permissions);
 
@@ -29,7 +30,7 @@ export class EditUserComponent implements OnInit {
 
   }
 
-  private getEmailFromJWT(jwt:string|null){
+  private static getEmailFromJWT(jwt:string|null){
     if(jwt==null)
       return []
     let a = jwt.split('by ')[1];
@@ -41,7 +42,7 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.selected_service.getUser();
-    this.editingCurrentUser = this.user?.email === this.getEmailFromJWT(localStorage.getItem('jwt'))
+    this.editingCurrentUser = this.user?.email === EditUserComponent.getEmailFromJWT(localStorage.getItem('jwt'))
     console.log(this.user)
     if(this.user==null){
       console.log('ERROR')
@@ -82,9 +83,11 @@ export class EditUserComponent implements OnInit {
 
     console.log(this.user)
     this.service.updateUser(this.user)?.subscribe(res => {
-      this.user = res;
-      if(this.editingCurrentUser)
-        this.router.navigate(['/login']).then();
+          this.user = res;
+          if(this.editingCurrentUser)
+            this.router.navigate(['/login']).then();
+    },() => {
+          this.snackBar.open("Couldn't edit user","OK");
     })
   }
 
@@ -99,7 +102,10 @@ export class EditUserComponent implements OnInit {
         this.router.navigate(['/login']).then();
       else
         this.router.navigate(['/home']).then();
-    })
+    },
+      ()=> {
+      this.snackBar.open("Couldn't delete user","OK");
+    });
 
   }
 

@@ -17,6 +17,11 @@ export class UseroService {
     console.log("Backend line is connecting...")
   }
 
+  private static handleError(error:HttpErrorResponse){
+    console.log(error.status)
+    return throwError("somzhing happ")
+  }
+
   login(email:string,password:string){
     let body = {'email':email,'password':password};
     let path = this.apiUrl + '/login';
@@ -25,13 +30,10 @@ export class UseroService {
 
       headers: new HttpHeaders().set("Content-Type","application/json")
 
-    }).pipe(catchError(this.handleError));
+    }).pipe(catchError(UseroService.handleError));
   }
 
-  private handleError(error:HttpErrorResponse){
-    console.log(error.status)
-    return throwError("somzhing happ")
-  }
+
 
   getUsers(){
     let jwt =  localStorage.getItem('jwt');
@@ -41,7 +43,7 @@ export class UseroService {
     let path = this.apiUrl + '/show/all';
     return this.httpClient.get<UserDTO[]>(path,{
       headers: new HttpHeaders().set('Authorization',jwt)
-    })
+    }).pipe(catchError(UseroService.handleError));
   }
 
 
@@ -56,7 +58,7 @@ export class UseroService {
     return this.httpClient.post<any>(path,null,{
       headers: new HttpHeaders().set('Authorization',jwt),
       params: new HttpParams().set("id",id)
-    });
+    }).pipe(catchError(UseroService.handleError));
   }
 
   updateUser(user:UserFull){
@@ -78,7 +80,7 @@ export class UseroService {
     return this.httpClient.post<UserFull>(path,body,{
       headers: new HttpHeaders().set('Authorization',jwt)
         .set("Content-Type","application/json")
-    });
+    }).pipe(catchError(UseroService.handleError));
   }
 
   insertUser(user:UserFull){
@@ -99,7 +101,7 @@ export class UseroService {
     }).pipe(map(response => {
       catchError(() => {return of(false)})
       return response != null;
-    }))
+    })).pipe(catchError(UseroService.handleError));
   }
 
 
