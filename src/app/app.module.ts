@@ -16,6 +16,9 @@ import {MatTableModule} from "@angular/material/table";
 import {HttpClientModule} from "@angular/common/http";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { ShowMachComponent } from './show-mach/show-mach.component';
+import { InsertMachComponent } from './insert-mach/insert-mach.component';
+import { ErrorMsgComponent } from './error-msg/error-msg.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     ShowUsersComponent,
     AddUserComponent,
     EditUserComponent,
+    ShowMachComponent,
+    InsertMachComponent,
+    ErrorMsgComponent,
   ],
     imports: [
         BrowserModule,

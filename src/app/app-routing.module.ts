@@ -6,6 +6,9 @@ import {RoutingGuard} from "./routing-guard";
 import {LoginComponent} from "./login/login.component";
 import {EditUserComponent} from "./edit-user/edit-user.component";
 import {AddUserComponent} from "./add-user/add-user.component";
+import {ShowMachComponent} from "./show-mach/show-mach.component";
+import {InsertMachComponent} from "./insert-mach/insert-mach.component";
+import {ErrorMsgComponent} from "./error-msg/error-msg.component";
 
 
 
@@ -33,6 +36,21 @@ const routes: Routes = [
   {
     path: "insert",
     component: AddUserComponent,
+    canActivate: [RoutingGuard]
+  },
+  {
+    path: "showMachines",
+    component: ShowMachComponent,
+    canActivate: [RoutingGuard]
+  },
+  {
+    path: "insertMachines",
+    component: InsertMachComponent,
+    canActivate: [RoutingGuard]
+  },
+  {
+    path: "errors",
+    component: ErrorMsgComponent,
     canActivate: [RoutingGuard]
   },
   {
