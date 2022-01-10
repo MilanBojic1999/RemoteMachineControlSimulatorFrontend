@@ -19,6 +19,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { ShowMachComponent } from './show-mach/show-mach.component';
 import { InsertMachComponent } from './insert-mach/insert-mach.component';
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
+import { MachineInfoComponent } from './machine-info/machine-info.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ErrorMsgComponent } from './error-msg/error-msg.component';
     ShowMachComponent,
     InsertMachComponent,
     ErrorMsgComponent,
+    MachineInfoComponent,
   ],
     imports: [
         BrowserModule,
