@@ -11,10 +11,10 @@
   <p>-----------------------------------------------</p>
   <p>Permissions</p>
 
-  <div *ngFor="let pp of permissions; let i=index" class="col-md-4 checkboxes">
+  <div *ngFor="let pp of permissions_string; let i=index" class="col-md-4 checkboxes">
     <label>
       <input type="checkbox" [(ngModel)]="permissions_selected[i]" (change)="onCheckChange($event)" class="my_checkbox">
-      {{permissions[i].value}}
+      {{pp}}
     </label>
   </div>
 

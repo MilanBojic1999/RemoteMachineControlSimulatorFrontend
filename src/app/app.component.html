@@ -9,6 +9,15 @@
         <div class="navbar-nav">
           <a [routerLink]="'/insert'" class="nav-link active" [class.disabled]="!containsPermission('CAN_CREATE_USERS')"> Insert Users</a>
         </div>
+        <div class="navbar-nav">
+          <a [routerLink]="'/showMachines'" class="nav-link active" [class.disabled]="!containsPermission('CAN_SEARCH_MACHINE')"> Show Machines</a>
+        </div>
+        <div class="navbar-nav">
+          <a [routerLink]="'/insertMachines'" class="nav-link active" [class.disabled]="!containsPermission('CAN_CREATE_MACHINE')"> Insert Machine</a>
+        </div>
+        <div class="navbar-nav">
+          <a [routerLink]="'/errors'" class="nav-link active"> Errors</a>
+        </div>
       </div>
     </div>
   </nav>

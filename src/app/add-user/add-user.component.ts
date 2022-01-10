@@ -11,9 +11,11 @@ export class AddUserComponent implements OnInit {
 
   user:UserFull;
 
+  permissions_string = ["CAN_READ_USERS","CAN_CREATE_USERS","CAN_UPDATE_USERS","CAN_DELETE_USERS","CAN_SEARCH_MACHINE"," CAN_START_MACHINE","CAN_STOP_MACHINE","CAN_RESTART_MACHINE"," CAN_CREATE_MACHINE","CAN_DESTROY_MACHINE"]
+
+
   permissions:Permission[] = [{ value: "CAN_READ_USERS" },{ value: "CAN_CREATE_USERS" }, { value: "CAN_UPDATE_USERS" }, { value: "CAN_DELETE_USERS" }]
 
-  permissions_map:Map<string,number> = new Map<string, number>([['CAN_READ_USERS', 0],['CAN_CREATE_USERS', 1],['CAN_UPDATE_USERS', 2],['CAN_DELETE_USERS', 3 ]])
 
   permissions_selected:boolean[] = [false,false,false,false]
 

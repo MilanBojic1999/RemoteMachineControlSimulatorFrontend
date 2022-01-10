@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ErrorMsg} from "../models/model";
 
 @Component({
   selector: 'app-error-msg',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ErrorMsgComponent implements OnInit {
 
-  constructor() { }
+  errors:ErrorMsg[];
+  displayedColumns:string[] = ['Id','Massage','Data Occurred'];
+
+
+  constructor() { this.errors = [] }
 
   ngOnInit(): void {
   }

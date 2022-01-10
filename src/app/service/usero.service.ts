@@ -11,10 +11,11 @@ import {of, throwError} from "rxjs";
 export class UseroService {
 
   private readonly apiUrl = environment.postApi;
-
+  private readonly userAddon = '/user'
 
   constructor(private httpClient:HttpClient) {
     console.log("Backend line is connecting...")
+
   }
 
   private static handleError(error:HttpErrorResponse){
@@ -24,7 +25,7 @@ export class UseroService {
 
   login(email:string,password:string){
     let body = {'email':email,'password':password};
-    let path = this.apiUrl + '/login';
+    let path = this.apiUrl + this.userAddon +'/login';
 
     return this.httpClient.post<string>(path,JSON.stringify(body),{
 
@@ -40,7 +41,7 @@ export class UseroService {
     if(jwt == null){
       throw new Error('Empty jwt token')
     }
-    let path = this.apiUrl + '/show/all';
+    let path = this.apiUrl +this.userAddon + '/show/all';
     return this.httpClient.get<UserDTO[]>(path,{
       headers: new HttpHeaders().set('Authorization',jwt)
     }).pipe(catchError(UseroService.handleError));
@@ -53,7 +54,7 @@ export class UseroService {
     if(jwt == null)
       return null;
     let id = user.userId;
-    let path = this.apiUrl + '/edit/delete';
+    let path = this.apiUrl +this.userAddon + '/edit/delete';
 
     return this.httpClient.post<any>(path,null,{
       headers: new HttpHeaders().set('Authorization',jwt),
@@ -66,7 +67,7 @@ export class UseroService {
     if(jwt == null)
       return null;
 
-    let path = this.apiUrl + '/edit'
+    let path = this.apiUrl +this.userAddon + '/edit'
 
     let user_tmp = {userId:user.userId,firstname:user.firstname,lastname:user.lastname,email:user.email,password:user.password,permissions:user.permissions.map<string>(r => {
         if(r==null){
@@ -88,7 +89,7 @@ export class UseroService {
     if(jwt == null)
       return null;
 
-    let path = this.apiUrl + '/add'
+    let path = this.apiUrl +this.userAddon + '/add'
 
     let user_tmp = {userId:user.userId,firstname:user.firstname,lastname:user.lastname,email:user.email,password:user.password,permissions:user.permissions.map<string>(r => {
         return r.value;

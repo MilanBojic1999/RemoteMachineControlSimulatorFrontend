@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Machines} from "../models/model";
 
 @Component({
   selector: 'app-show-mach',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowMachComponent implements OnInit {
 
-  constructor() { }
+  machines:Machines[];
+  displayedColumns:string[] = ['Id','Status','Data Created'];
+
+  constructor() {
+    this.machines = []
+  }
 
   ngOnInit(): void {
   }

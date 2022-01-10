@@ -8,7 +8,7 @@ export interface UserDTO {
   email:string;
   firstname:string;
   lastname:string;
-  permissions: Permission[]
+  permissions: Permission[];
 }
 
 export interface UserFull {
@@ -17,5 +17,17 @@ export interface UserFull {
   firstname:string;
   lastname:string;
   password:string;
-  permissions: Permission[]
+  permissions: Permission[];
+}
+
+export interface Machines{
+  id:number;
+  status:string;
+  date:string;
+}
+
+export interface ErrorMsg{
+  id:number;
+  massage:string;
+  date:string;
 }
