@@ -10,12 +10,17 @@ export class ShowMachComponent implements OnInit {
 
   machines:Machines[];
   displayedColumns:string[] = ['Id','Status','Data Created'];
+  rightClickMenuItems:string[] = ['Start','Stop','Restart','Delete']
 
   constructor() {
     this.machines = []
   }
 
   ngOnInit(): void {
+  }
+
+  handleMenuItemCleck(event: any){
+    console.log(event)
   }
 
 }

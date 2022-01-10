@@ -9,8 +9,6 @@ import {AddUserComponent} from "./add-user/add-user.component";
 import {ShowMachComponent} from "./show-mach/show-mach.component";
 import {InsertMachComponent} from "./insert-mach/insert-mach.component";
 import {ErrorMsgComponent} from "./error-msg/error-msg.component";
-import {MachineInfoComponent} from "./machine-info/machine-info.component";
-
 
 
 const routes: Routes = [
@@ -52,11 +50,6 @@ const routes: Routes = [
   {
     path: "errors",
     component: ErrorMsgComponent,
-    canActivate: [RoutingGuard]
-  },
-  {
-    path: "infoMachine",
-    component: MachineInfoComponent,
     canActivate: [RoutingGuard]
   },
   {
