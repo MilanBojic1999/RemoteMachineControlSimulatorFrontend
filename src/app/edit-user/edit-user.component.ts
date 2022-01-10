@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Permission, UserFull} from "../models/model";
+import { UserFull} from "../models/model";
 import {UseroService} from "../service/usero.service";
 import {Router} from "@angular/router";
 import {SelectedUserService} from "../service/selected-user.service";
@@ -13,10 +13,9 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class EditUserComponent implements OnInit {
 
   user:UserFull|null;
-  permissions_string:string[] = ["CAN_READ_USERS","CAN_CREATE_USERS","CAN_UPDATE_USERS","CAN_DELETE_USERS","CAN_SEARCH_MACHINE"," CAN_START_MACHINE","CAN_STOP_MACHINE","CAN_RESTART_MACHINE"," CAN_CREATE_MACHINE","CAN_DESTROY_MACHINE"]
-  permissions:Permission[] = [{ value: "CAN_READ_USERS" },{ value: "CAN_CREATE_USERS" }, { value: "CAN_UPDATE_USERS" }, { value: "CAN_DELETE_USERS" }]
+  permissions_string:string[] = ["CAN_READ_USERS","CAN_CREATE_USERS","CAN_UPDATE_USERS","CAN_DELETE_USERS","CAN_SEARCH_MACHINE","CAN_START_MACHINE","CAN_STOP_MACHINE","CAN_RESTART_MACHINE","CAN_CREATE_MACHINE","CAN_DESTROY_MACHINE"]
 
-  permissions_selected:boolean[] = [false,false,false,false]
+  permissions_selected:boolean[] = [false,false,false,false,false,false,false,false,false,false]
 
   editingCurrentUser:boolean = false;
 
@@ -45,14 +44,14 @@ export class EditUserComponent implements OnInit {
     if(this.user==null){
       console.log('ERROR')
     }else{
-      this.permissions_selected= [false,false,false,false]
+      this.permissions_selected= [false,false,false,false,false,false,false,false,false,false]
 
       for(let user_per of this.user.permissions){
         console.log(user_per)
-        for(let index=0;index<4;index++) {
+        for(let index=0;index<10;index++) {
           if(this.permissions_string[index] == user_per.value) {
             this.permissions_selected[index] = true;
-            index = 5;
+            break
           }else{
             console.log(index,'|0000|',user_per.value,'|');
           }
@@ -75,7 +74,7 @@ export class EditUserComponent implements OnInit {
     this.user.permissions = [];
     for(let i=0;i<4;i++){
       if(this.permissions_selected[i]){
-        this.user.permissions.push(this.permissions[i]);
+        this.user.permissions.push({value:this.permissions_string[i]});
       }
     }
 

@@ -19,7 +19,9 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { ShowMachComponent } from './show-mach/show-mach.component';
 import { InsertMachComponent } from './insert-mach/insert-mach.component';
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
-import { MachineInfoComponent } from './machine-info/machine-info.component';
+import { ActionPerformerComponent } from './action-performer/action-performer.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -32,20 +34,22 @@ import { MachineInfoComponent } from './machine-info/machine-info.component';
     ShowMachComponent,
     InsertMachComponent,
     ErrorMsgComponent,
-    MachineInfoComponent,
+    ActionPerformerComponent,
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        FormsModule,
-        AppRoutingModule,
-        MatTableModule,
-        HttpClientModule,
-        MatCheckboxModule,
-        MatSnackBarModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    AppRoutingModule,
+    MatTableModule,
+    HttpClientModule,
+    MatCheckboxModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatButtonModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

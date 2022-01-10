@@ -1,0 +1,16 @@
+<div [hidden]="!firstDialog">
+  <p>You are about to <b>{{actionName}}</b> a machine, would you like to schedule action</p>
+
+  <div mat-dialog-content>
+    <button mat-raised-button (click)="sendAction()"> Send </button>
+    <button mat-raised-button (click)="scheduleAction()"> Schedule </button>
+    <button mat-raised-button (click)="close()"> Cancel </button>
+  </div>
+</div>
+
+<div [hidden]="firstDialog">
+  <p> Second page </p>
+  <div mat-dialog-content>
+    <button mat-raised-button (click)="close()"> Cancel </button>
+  </div>
+</div>

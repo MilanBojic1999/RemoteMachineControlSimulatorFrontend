@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {ActionPerformerComponent} from "../action-performer/action-performer.component";
 
 @Component({
   selector: 'app-insert-mach',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InsertMachComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog:MatDialog) { }
 
   ngOnInit(): void {
+    console.log("Whros")
+
+
+  }
+
+  openDialog(){
+    const dialog = this.dialog.open(ActionPerformerComponent,{
+        width: '400px',
+        data: 'Start'
+    });
+
+    dialog.afterClosed().subscribe(() => {
+      console.log("Why")
+    })
   }
 
 }

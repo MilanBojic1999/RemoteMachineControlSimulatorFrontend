@@ -19,7 +19,7 @@ export class ShowMachComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  handleMenuItemCleck(event: any){
+  handleMenuItemClick(event: any){
     console.log(event)
   }
 
