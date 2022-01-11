@@ -24,6 +24,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -38,23 +39,24 @@ import {MatNativeDateModule} from "@angular/material/core";
     ErrorMsgComponent,
     ActionPerformerComponent,
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    AppRoutingModule,
-    MatTableModule,
-    HttpClientModule,
-    MatCheckboxModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        AppRoutingModule,
+        MatTableModule,
+        HttpClientModule,
+        MatCheckboxModule,
+        MatSnackBarModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        ReactiveFormsModule,
+        MatMenuModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

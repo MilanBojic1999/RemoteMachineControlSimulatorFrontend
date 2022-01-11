@@ -12,10 +12,11 @@ table {
 
 .mat-row{
   height: auto;
+
 }
 
 .mat-cell{
-  padding: 0 10px;
+  padding: 0.5rem 10px;
   width: 300px;
 }
 
@@ -45,4 +46,13 @@ table {
 
 .date_col{
   max-width: 150px;
+}
+
+.buttons{
+  margin: 3rem 0;
+}
+
+.btn{
+  margin-left: 1rem;
+  border-color: #100110;
 }

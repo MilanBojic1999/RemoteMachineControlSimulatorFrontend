@@ -3,6 +3,7 @@ import {MachinesService} from "../service/machines.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormControl} from "@angular/forms";
 import {DialogData} from "../models/model";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-action-performer',
@@ -17,6 +18,8 @@ export class ActionPerformerComponent implements OnInit {
 
   date:FormControl;
   time:string;
+
+  pipe = new DatePipe('en-US')
 
   constructor(private service:MachinesService,
               public dialogRef:MatDialogRef<ActionPerformerComponent>,
@@ -37,24 +40,45 @@ export class ActionPerformerComponent implements OnInit {
 
   sendAction(){
     this.dialogRef.close()
-    let date_txt = this.date.value.toLocaleDateString().replace('.','-').replace('.','-')
-    let full_time = date_txt.slice(0,-1) + " " + this.time +":00"
+
+    let full_time = ""
+
+    if(this.time) {
+      let date_txt = this.pipe.transform(this.date.value,'dd-MM-yyyy')
+      full_time = date_txt + " " + this.time + ":00";
+    }
+
     console.log("Date",full_time)
 
     switch (this.data.actionName) {
       case 'create':{
+        this.service.insert(full_time).subscribe(()=>{
+          this.close();
+        });
         break;
       }
       case 'start':{
+        this.service.start(this.data.machId,full_time).subscribe(()=>{
+          this.close();
+        });
         break;
       }
       case 'stop':{
+        this.service.stop(this.data.machId,full_time).subscribe(()=>{
+          this.close();
+        });
         break;
       }
       case 'restart':{
+        this.service.restart(this.data.machId,full_time).subscribe(()=>{
+          this.close();
+        });
         break;
       }
       case 'delete':{
+        this.service.delete(this.data.machId,full_time).subscribe(()=>{
+          this.close();
+        });
         break;
       }
       default:{

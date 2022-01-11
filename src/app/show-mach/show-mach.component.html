@@ -17,4 +17,17 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row (click)="selectMachine(row)" *matRowDef="let row,columns:displayedColumns;"></tr>
+
 </table>
+
+
+<div class="buttons">
+  <button class="btn" (click)="makeAction('create')" [disabled]="!containsPermission('CAN_CREATE_MACHINE')"> Create </button>
+  <button class="btn" (click)="makeAction('start')" [disabled]="!containsPermission('CAN_START_MACHINE')"> Start </button>
+  <button class="btn" (click)="makeAction('stop')" [disabled]="!containsPermission('CAN_STOP_MACHINE')"> Stop </button>
+  <button class="btn" (click)="makeAction('restart')" [disabled]="!containsPermission('CAN_RESTART_MACHINE')"> Restart </button>
+  <button class="btn" (click)="makeAction('delete')" [disabled]="!containsPermission('CAN_DESTROY_MACHINE')"> Delete </button>
+
+</div>
+
