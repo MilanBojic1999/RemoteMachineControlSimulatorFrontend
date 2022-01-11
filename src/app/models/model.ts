@@ -31,3 +31,8 @@ export interface ErrorMsg{
   massage:string;
   date:string;
 }
+
+export interface DialogData{
+  actionName:string;
+  machId:number;
+}

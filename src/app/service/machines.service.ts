@@ -21,7 +21,7 @@ export class MachinesService {
     return throwError("somzhing happ")
   }
 
-  insert(){
+  insert(date:string){
     let jwt = localStorage.getItem("jwt")
     if(jwt == null){
       throw new Error('Empty jwt token')
@@ -32,7 +32,7 @@ export class MachinesService {
     }).pipe(catchError(MachinesService.handleError));
   }
 
-  delete(){
+  delete(id:number,date:string){
     let jwt = localStorage.getItem("jwt")
     if(jwt == null){
       throw new Error('Empty jwt token')
@@ -43,12 +43,34 @@ export class MachinesService {
     }).pipe(catchError(MachinesService.handleError));
   }
 
-  start(){
+  start(id:number,date:string){
     let jwt = localStorage.getItem("jwt")
     if(jwt == null){
       throw new Error('Empty jwt token')
     }
     let path = this.apiUrl +this.machAddon + '/start';
+    return this.httpClient.post<boolean>(path,{
+      headers: new HttpHeaders().set('Authorization',jwt)
+    }).pipe(catchError(MachinesService.handleError));
+  }
+
+  stop(id:number,date:string){
+    let jwt = localStorage.getItem("jwt")
+    if(jwt == null){
+      throw new Error('Empty jwt token')
+    }
+    let path = this.apiUrl +this.machAddon + '/stop';
+    return this.httpClient.post<boolean>(path,{
+      headers: new HttpHeaders().set('Authorization',jwt)
+    }).pipe(catchError(MachinesService.handleError));
+  }
+
+  restart(id:number,date:string){
+    let jwt = localStorage.getItem("jwt")
+    if(jwt == null){
+      throw new Error('Empty jwt token')
+    }
+    let path = this.apiUrl +this.machAddon + '/restart';
     return this.httpClient.post<boolean>(path,{
       headers: new HttpHeaders().set('Authorization',jwt)
     }).pipe(catchError(MachinesService.handleError));

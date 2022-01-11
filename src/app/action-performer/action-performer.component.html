@@ -1,5 +1,5 @@
-<div [hidden]="!firstDialog">
-  <p>You are about to <b>{{actionName}}</b> a machine, would you like to schedule action</p>
+<div [hidden]="!firstDialog" class="firstDialog">
+  <p>You are about to <b>{{data.actionName}}</b> a machine, would you like to schedule action</p>
 
   <div mat-dialog-content>
     <button mat-raised-button (click)="sendAction()"> Send </button>
@@ -8,9 +8,27 @@
   </div>
 </div>
 
-<div [hidden]="firstDialog">
-  <p> Second page </p>
+<div [hidden]="!secondDialog" class="secondDialog">
+  <p> Second page (Select date)</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" [formControl]="date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
   <div mat-dialog-content>
+    <button mat-raised-button (click)="openThirdDialog()"> Next </button>
+    <button mat-raised-button (click)="close()"> Cancel </button>
+  </div>
+</div>
+
+<div [hidden]="!thirdDialog" class="thirdDialog">
+  <p> Third page (Select time)</p>
+  <div class="d-md-flex time-div">
+    <input type="time" id="input" class="form-control" [(ngModel)]="time"/>
+  </div>
+  <div mat-dialog-content>
+    <button mat-raised-button (click)="sendAction()"> Send </button>
     <button mat-raised-button (click)="close()"> Cancel </button>
   </div>
 </div>

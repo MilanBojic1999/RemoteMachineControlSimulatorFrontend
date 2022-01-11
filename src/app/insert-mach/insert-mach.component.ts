@@ -20,7 +20,7 @@ export class InsertMachComponent implements OnInit {
   openDialog(){
     const dialog = this.dialog.open(ActionPerformerComponent,{
         width: '400px',
-        data: 'Start'
+        data: {actionName:'Start',machId:1}
     });
 
     dialog.afterClosed().subscribe(() => {
