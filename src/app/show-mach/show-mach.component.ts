@@ -6,6 +6,7 @@ import {ActionPerformerComponent} from "../action-performer/action-performer.com
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {SearchComponentComponent} from "../search-component/search-component.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-show-mach',
@@ -19,7 +20,8 @@ export class ShowMachComponent implements OnInit {
 
   selectedMachine:Machines|null;
 
-  constructor(private service:MachinesService,private usero_service:UseroService,public dialog:MatDialog,private snackBar: MatSnackBar) {
+  constructor(private service:MachinesService,private usero_service:UseroService,
+              public dialog:MatDialog,private snackBar: MatSnackBar,private router:Router) {
     this.selectedMachine = null;
     this.machines = [];
   }
@@ -82,5 +84,8 @@ export class ShowMachComponent implements OnInit {
     })
   }
 
+  goToInsertMach(){
+    this.router.navigate(['/insertMachines']).then(r => console.log(r))
+  }
 
 }

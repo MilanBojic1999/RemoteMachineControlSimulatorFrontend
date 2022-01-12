@@ -30,6 +30,7 @@ export interface Machines{
 export interface ErrorMsg{
   id:number;
   massage:string;
+  machineId:number;
   date:string;
 }
 

@@ -38,11 +38,14 @@ table {
   max-width: 100px;
 }
 
-
 .msg_col{
-  max-width: 150px;
+  max-width: 175px;
+}
+
+.mach_col{
+  max-width: 75px;
 }
 
 .date_col{
-  max-width: 150px;
+  max-width: 200px;
 }

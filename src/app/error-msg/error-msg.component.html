@@ -11,10 +11,17 @@
     <td mat-cell *matCellDef="let err" [ngClass]="'msg_col'">{{err.massage}}</td>
   </ng-container>
 
+  <ng-container matColumnDef="Machines">
+    <th mat-header-cell *matHeaderCellDef [ngClass]="'mach_col'"> Machines </th>
+    <td mat-cell *matCellDef="let err" [ngClass]="'mach_col'">{{err.machineId}}</td>
+  </ng-container>
+
   <ng-container matColumnDef="Data Occurred">
     <th mat-header-cell *matHeaderCellDef [ngClass]="'date_col'"> Date occurred </th>
     <td mat-cell *matCellDef="let err" [ngClass]="'date_col'">{{err.date}}</td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row,columns:displayedColumns;"></tr>
+
 </table>

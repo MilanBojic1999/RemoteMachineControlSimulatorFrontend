@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ErrorMsg} from "../models/model";
+import {MachinesService} from "../service/machines.service";
 
 @Component({
   selector: 'app-error-msg',
@@ -9,12 +10,17 @@ import {ErrorMsg} from "../models/model";
 export class ErrorMsgComponent implements OnInit {
 
   errors:ErrorMsg[];
-  displayedColumns:string[] = ['Id','Massage','Data Occurred'];
+  displayedColumns:string[] = ['Id','Massage','Machines','Data Occurred'];
 
 
-  constructor() { this.errors = [] }
+  constructor(private service:MachinesService) { this.errors = [] }
 
   ngOnInit(): void {
+    this.service.errorMassages().subscribe(res => {
+      console.log(res)
+
+      this.errors = res;
+    });
   }
 
 }

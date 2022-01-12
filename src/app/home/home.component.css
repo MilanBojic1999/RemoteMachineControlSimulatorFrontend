@@ -1,10 +1,54 @@
 
 
-.buttons{
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+  overflow-x: scroll;
+}
 
+.mat-row{
+  height: auto;
+
+}
+
+.mat-cell{
+  padding: 0.5rem 10px;
+  width: 300px;
+}
+
+.mat-header-cell {
+  align-content: center;
+}
+
+
+.mat-row:hover .mat-cell {
+  border-color: black;
+  border-top: #100110;
+  background-color: #efefef;
+}
+
+.row-is-clicked {
+  font-weight: bold;
 }
 
 .btn{
   margin-left: 1rem;
   border-color: #100110;
+}
+
+.id_col{
+  max-width: 100px;
+}
+
+.name_col{
+  max-width: 170px;
+}
+
+.stat_col{
+  max-width: 150px;
+}
+
+.date_col{
+  max-width: 150px;
 }
