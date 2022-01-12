@@ -5,6 +5,7 @@ import {UseroService} from "../service/usero.service";
 import {ActionPerformerComponent} from "../action-performer/action-performer.component";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {SearchComponentComponent} from "../search-component/search-component.component";
 
 @Component({
   selector: 'app-show-mach',
@@ -14,7 +15,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class ShowMachComponent implements OnInit {
 
   machines:Machines[];
-  displayedColumns:string[] = ['Id','Status','Data Created'];
+  displayedColumns:string[] = ['Id','Name','Status','Data Created'];
 
   selectedMachine:Machines|null;
 
@@ -44,6 +45,10 @@ export class ShowMachComponent implements OnInit {
     console.log(this.selectedMachine);
   }
 
+  setShownMachines(machines:Machines[]){
+    this.machines = machines;
+  }
+
   makeAction(name:string){
     if(this.selectedMachine == null && name != "create"){
       this.snackBar.open("You haven't selected any machine, to "+name+" it","OK");
@@ -55,11 +60,17 @@ export class ShowMachComponent implements OnInit {
 
     const dialog = this.dialog.open(ActionPerformerComponent,{
       width: '400px',
-      data: {actionName:name,machId:id}
+      data: {actionName:name,machId:id,machineName:''}
     });
 
     dialog.afterClosed().subscribe(() => {
       console.log("Why")
+    })
+  }
+
+  openSearchDialog(){
+    this.dialog.open(SearchComponentComponent,{
+
     })
   }
 

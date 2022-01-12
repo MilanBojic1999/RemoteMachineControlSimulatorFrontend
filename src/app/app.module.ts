@@ -25,6 +25,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatMenuModule} from "@angular/material/menu";
+import { SearchComponentComponent } from './search-component/search-component.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {MatMenuModule} from "@angular/material/menu";
     InsertMachComponent,
     ErrorMsgComponent,
     ActionPerformerComponent,
+    SearchComponentComponent,
   ],
     imports: [
         BrowserModule,

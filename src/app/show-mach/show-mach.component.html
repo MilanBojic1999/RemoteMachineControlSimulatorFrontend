@@ -1,9 +1,18 @@
 <p>show-mach works!</p>
 
+<div class="search-buttons">
+  <button class="btn btn2" (click)="openSearchDialog()" [disabled]="!containsPermission('CAN_SEARCH_MACHINE')"> Search </button>
+</div>
+
 <table mat-table [dataSource]="machines" class="mat-elevation-z8">
   <ng-container matColumnDef="Id">
     <th mat-header-cell *matHeaderCellDef [ngClass]="'id_col'"> Id </th>
     <td mat-cell *matCellDef="let m" [ngClass]="'id_col'">{{m.id}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="Name">
+    <th mat-header-cell *matHeaderCellDef [ngClass]="'name_col'"> Name </th>
+    <td mat-cell *matCellDef="let m" [ngClass]="'name_col'">{{m.name}}</td>
   </ng-container>
 
   <ng-container matColumnDef="Status">

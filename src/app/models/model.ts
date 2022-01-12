@@ -22,6 +22,7 @@ export interface UserFull {
 
 export interface Machines{
   id:number;
+  name:string;
   status:string;
   date:string;
 }
@@ -35,4 +36,11 @@ export interface ErrorMsg{
 export interface DialogData{
   actionName:string;
   machId:number;
+  machineName:string;
+}
+
+
+export interface searchCriteria{
+  key:string;
+  value:any;
 }

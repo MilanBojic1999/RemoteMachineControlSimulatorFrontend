@@ -22,14 +22,15 @@ export class MachinesService {
     return throwError(error.message)
   }
 
-  insert(date:string){
+  insert(name:string,date:string){
     let jwt = localStorage.getItem("jwt")
     if(jwt == null){
       throw new Error('Empty jwt token')
     }
     let path = this.apiUrl +this.machAddon + '/create';
-
-    let action_info = {id:-1,date:date};
+    console.log(name)
+    let action_info = {name:name,date:date};
+    console.log(action_info)
     let body = JSON.stringify(action_info);
 
     return this.httpClient.post<boolean>(path,body,{

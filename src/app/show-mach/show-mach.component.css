@@ -3,6 +3,19 @@ table {
   width: 100%;
 }
 
+.search-buttons{
+  width: 50%;
+  float: right;
+  align-items: end;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.btn2 {
+  float: right;
+}
+
 .mat-row .mat-cell {
   border-bottom: 1px solid transparent;
   border-top: 1px solid transparent;
@@ -39,6 +52,9 @@ table {
   max-width: 100px;
 }
 
+.name_col{
+  max-width: 170px;
+}
 
 .stat_col{
   max-width: 150px;

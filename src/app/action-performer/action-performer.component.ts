@@ -52,7 +52,7 @@ export class ActionPerformerComponent implements OnInit {
 
     switch (this.data.actionName) {
       case 'create':{
-        this.service.insert(full_time).subscribe(()=>{
+        this.service.insert(this.data.machineName,full_time).subscribe(()=>{
           this.close();
         });
         break;
