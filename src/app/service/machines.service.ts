@@ -3,7 +3,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {throwError} from "rxjs";
 import {catchError} from "rxjs/operators";
-import {ErrorMsg, Machines} from "../models/model";
+import {ErrorMsg, Machines, searchCriteria} from "../models/model";
 
 @Injectable({
   providedIn: 'root'
@@ -115,8 +115,17 @@ export class MachinesService {
   }
 
 
-  search(){
-
+  search(criteria:searchCriteria[]){
+    let jwt = localStorage.getItem("jwt")
+    if(jwt == null){
+      throw new Error('Empty jwt token')
+    }
+    let path = this.apiUrl +this.machAddon + '/search';
+    let body = JSON.stringify({list:criteria});
+    return this.httpClient.post<Machines[]>(path,body,{
+      headers: new HttpHeaders().set('Authorization',jwt)
+        .set("Content-Type","application/json")
+    }).pipe(catchError(MachinesService.handleError));
   }
 
   errorMassages(){

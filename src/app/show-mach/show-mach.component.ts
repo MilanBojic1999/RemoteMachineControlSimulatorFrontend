@@ -46,6 +46,9 @@ export class ShowMachComponent implements OnInit {
   }
 
   setShownMachines(machines:Machines[]){
+    if(machines.length == 0){
+      this.snackBar.open("There isn't any machine to show","OK");
+    }
     this.machines = machines;
   }
 
@@ -69,9 +72,15 @@ export class ShowMachComponent implements OnInit {
   }
 
   openSearchDialog(){
-    this.dialog.open(SearchComponentComponent,{
+    let dia = this.dialog.open(SearchComponentComponent,{
+      width: '350px'
+    });
 
+    const ccn = dia.componentInstance.onSearch.subscribe(res => {
+      this.setShownMachines(res)
+      console.log(res);
     })
   }
+
 
 }

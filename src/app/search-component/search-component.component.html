@@ -8,27 +8,31 @@
   </mat-form-field>
 
   <mat-form-field appearance="standard">
-    <mat-label> Status </mat-label>
-    <button mat-raised-button [matMenuTriggerFor]="menu">{{status}}</button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="setStatus('STOPPED')"> STOPPED </button>
-      <button mat-menu-item (click)="setStatus('RUNNING')"> RUNNING </button>
-    </mat-menu>
+    <mat-label>Status</mat-label>
+    <input matInput type="text" aria-label="Status" [formControl]="status" [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let option of options" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
 
   <mat-form-field appearance="standard">
     <mat-label>Choose a date</mat-label>
-    <input matInput [matDatepicker]="picker" [formControl]="dateFrom">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
+    <input matInput [matDatepicker]="picker1" [formControl]="dateFrom">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field appearance="standard">
     <mat-label>Choose a date</mat-label>
-    <input matInput [matDatepicker]="picker" [formControl]="dateTo">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
+    <input matInput [matDatepicker]="picker2" [formControl]="dateTo">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
   </mat-form-field>
 
+</div>
 
+<div class="butt">
+  <button mat-raised-button (click)="search()"> Search </button>
 </div>

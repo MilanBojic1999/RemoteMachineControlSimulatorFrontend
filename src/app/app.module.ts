@@ -20,12 +20,13 @@ import { ShowMachComponent } from './show-mach/show-mach.component';
 import { InsertMachComponent } from './insert-mach/insert-mach.component';
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
 import { ActionPerformerComponent } from './action-performer/action-performer.component';
-import {MatDialogModule} from "@angular/material/dialog";
+import { MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatMenuModule} from "@angular/material/menu";
 import { SearchComponentComponent } from './search-component/search-component.component';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
   declarations: [
@@ -41,25 +42,29 @@ import { SearchComponentComponent } from './search-component/search-component.co
     ActionPerformerComponent,
     SearchComponentComponent,
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        FormsModule,
-        AppRoutingModule,
-        MatTableModule,
-        HttpClientModule,
-        MatCheckboxModule,
-        MatSnackBarModule,
-        MatDialogModule,
-        MatButtonModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        ReactiveFormsModule,
-        MatMenuModule
-    ],
-  providers: [],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    AppRoutingModule,
+    MatTableModule,
+    HttpClientModule,
+    MatCheckboxModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    MatMenuModule,
+    MatAutocompleteModule
+  ],
+  providers: [{
+    provide: MatDialogRef,
+    useValue: {}
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
