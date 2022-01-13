@@ -10,7 +10,7 @@ import {MachinesService} from "../service/machines.service";
 export class ErrorMsgComponent implements OnInit {
 
   errors:ErrorMsg[];
-  displayedColumns:string[] = ['Id','Massage','Machines','Data Occurred'];
+  displayedColumns:string[] = ['Id','Massage','Machines','Action name','Data Occurred'];
 
 
   constructor(private service:MachinesService) { this.errors = [] }

@@ -30,6 +30,7 @@ export interface Machines{
 export interface ErrorMsg{
   id:number;
   massage:string;
+  actionName:string;
   machineId:number;
   date:string;
 }
@@ -44,4 +45,11 @@ export interface DialogData{
 export interface searchCriteria{
   key:string;
   value:any;
+}
+
+export interface SearchData{
+  name:string;
+  status:string;
+  dateFrom:any;
+  dateTo:any;
 }

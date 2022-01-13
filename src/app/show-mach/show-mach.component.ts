@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Machines} from "../models/model";
+import {Machines, searchCriteria, SearchData} from "../models/model";
 import {MachinesService} from "../service/machines.service";
 import {UseroService} from "../service/usero.service";
 import {ActionPerformerComponent} from "../action-performer/action-performer.component";
@@ -7,6 +7,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {SearchComponentComponent} from "../search-component/search-component.component";
 import {Router} from "@angular/router";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-show-mach',
@@ -20,10 +21,16 @@ export class ShowMachComponent implements OnInit {
 
   selectedMachine:Machines|null;
 
+  searchDat:SearchData;
+
+  pipe = new DatePipe('en-US');
+
+
   constructor(private service:MachinesService,private usero_service:UseroService,
               public dialog:MatDialog,private snackBar: MatSnackBar,private router:Router) {
     this.selectedMachine = null;
     this.machines = [];
+    this.searchDat = {name:'',status:'',dateFrom:null,dateTo:null};
   }
 
   containsPermission(permission:string):boolean{
@@ -72,18 +79,54 @@ export class ShowMachComponent implements OnInit {
       console.log("Why ",res)
       if(res != true)
         this.snackBar.open(res,"OK")
+      else
+        setTimeout(this.searchModule.bind(this),20100)
     })
   }
 
   openSearchDialog(){
     let dia = this.dialog.open(SearchComponentComponent,{
-      width: '350px'
+      width: '350px',
+      data: this.searchDat
     });
 
     const ccn = dia.componentInstance.onSearch.subscribe(res => {
-      this.setShownMachines(res)
-      console.log(res);
+      console.log(res)
+      this.searchDat = res;
+      this.searchModule();
     })
+  }
+
+  searchModule(){
+    console.log(this.searchDat.name, this.searchDat.status, this.searchDat.dateFrom, this.searchDat.dateTo)
+    let critics: searchCriteria[] = []
+    if (this.searchDat.name) {
+      critics.push({key: "name", value: this.searchDat.name})
+    }
+
+    if (this.searchDat.status) {
+      critics.push({key: 'status', value: this.searchDat.status})
+    }
+    if (this.searchDat.dateFrom) {
+      let date_txt = this.pipe.transform(this.searchDat.dateFrom, 'dd-MM-yyyy')
+      critics.push({key: 'dateFrom', value: date_txt})
+    }
+    if (this.searchDat.dateTo) {
+      let date_txt = this.pipe.transform(this.searchDat.dateTo, 'dd-MM-yyyy')
+      critics.push({key: 'dateTo', value: date_txt})
+    }
+    console.log(critics)
+    if (critics.length == 0) {
+      this.service.searchAll().subscribe(res => {
+        console.log(res)
+        this.setShownMachines(res)
+      })
+    } else {
+      this.service.search(critics).subscribe(res => {
+        console.log(res)
+        this.setShownMachines(res)
+      })
+    }
   }
 
   goToInsertMach(){

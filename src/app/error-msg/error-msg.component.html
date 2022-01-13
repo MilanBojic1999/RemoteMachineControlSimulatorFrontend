@@ -16,6 +16,11 @@
     <td mat-cell *matCellDef="let err" [ngClass]="'mach_col'">{{err.machineId}}</td>
   </ng-container>
 
+  <ng-container matColumnDef="Action name">
+    <th mat-header-cell *matHeaderCellDef [ngClass]="'act_col'"> Action name </th>
+    <td mat-cell *matCellDef="let err" [ngClass]="'act_col'">{{err.actionName}}</td>
+  </ng-container>
+
   <ng-container matColumnDef="Data Occurred">
     <th mat-header-cell *matHeaderCellDef [ngClass]="'date_col'"> Date occurred </th>
     <td mat-cell *matCellDef="let err" [ngClass]="'date_col'">{{err.date}}</td>

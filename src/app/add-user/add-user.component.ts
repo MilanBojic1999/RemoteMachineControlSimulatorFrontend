@@ -37,7 +37,7 @@ export class AddUserComponent implements OnInit {
       console.log(res);
     },
     error => {
-      this.snackBar.open("Couldn't add given user")
+      this.snackBar.open("Couldn't add given user","OK")
     })
   }
 

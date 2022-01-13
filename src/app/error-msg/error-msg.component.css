@@ -49,3 +49,7 @@ table {
 .date_col{
   max-width: 200px;
 }
+
+.act_col{
+  max-width: 125px;
+}

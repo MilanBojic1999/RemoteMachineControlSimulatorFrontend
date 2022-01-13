@@ -72,7 +72,7 @@ export class EditUserComponent implements OnInit {
       return
     }
     this.user.permissions = [];
-    for(let i=0;i<4;i++){
+    for(let i=0;i<10;i++){
       if(this.permissions_selected[i]){
         this.user.permissions.push({value:this.permissions_string[i]});
       }

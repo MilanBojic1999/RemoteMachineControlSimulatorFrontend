@@ -1,8 +1,8 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
+import {Component, EventEmitter, Inject, OnInit} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {MachinesService} from "../service/machines.service";
-import {MatDialogRef} from "@angular/material/dialog";
-import {Machines, searchCriteria} from "../models/model";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {DialogData, Machines, searchCriteria, SearchData} from "../models/model";
 import {DatePipe} from "@angular/common";
 
 @Component({
@@ -19,17 +19,17 @@ export class SearchComponentComponent implements OnInit {
 
   options: string[] = ['STOPPED','RUNNING']
 
-  onSearch:EventEmitter<Machines[]>;
+  onSearch:EventEmitter<SearchData>;
 
-  pipe = new DatePipe('en-US');
 
   constructor(private service:MachinesService,
-              public dialogRef:MatDialogRef<SearchComponentComponent>) {
-    this.name = new FormControl('');
-    this.status = new FormControl('');
-    this.dateFrom = new FormControl();
-    this.dateTo = new FormControl();
-    this.onSearch = new EventEmitter<Machines[]>();
+              public dialogRef:MatDialogRef<SearchComponentComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: SearchData) {
+    this.name = new FormControl(data.name);
+    this.status = new FormControl(data.status);
+    this.dateFrom = new FormControl(data.dateFrom);
+    this.dateTo = new FormControl(data.dateTo);
+    this.onSearch = new EventEmitter<SearchData>();
   }
 
 
@@ -38,37 +38,9 @@ export class SearchComponentComponent implements OnInit {
   }
 
   search() {
-    console.log(this.name.value, this.status.value, this.dateFrom.value, this.dateTo.value)
-    let critics: searchCriteria[] = []
-    if (this.name.value) {
-      critics.push({key: "name", value: this.name.value})
-    }
+    this.onSearch.emit({name:this.name.value,status:this.status.value,dateFrom:this.dateFrom.value,dateTo:this.dateTo.value});
+    this.dialogRef.close();
 
-    if (this.status.value) {
-      critics.push({key: 'status', value: this.status.value})
-    }
-    if (this.dateFrom.value) {
-      let date_txt = this.pipe.transform(this.dateFrom.value, 'dd-MM-yyyy')
-      critics.push({key: 'dateFrom', value: date_txt})
-    }
-    if (this.dateTo.value) {
-      let date_txt = this.pipe.transform(this.dateTo.value, 'dd-MM-yyyy')
-      critics.push({key: 'dateTo', value: date_txt})
-    }
-    console.log(critics)
-    if (critics.length == 0) {
-      this.service.searchAll().subscribe(res => {
-        console.log(res)
-        this.onSearch.emit(res);
-        this.dialogRef.close();
-      })
-    } else {
-      this.service.search(critics).subscribe(res => {
-        console.log(res)
-        this.onSearch.emit(res);
-        this.dialogRef.close();
-      })
-    }
   }
 
 
