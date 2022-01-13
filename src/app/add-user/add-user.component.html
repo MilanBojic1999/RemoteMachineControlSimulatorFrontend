@@ -4,13 +4,38 @@
 <div class="user-info" [hidden]="!user">
 
 
-  <p>Email:</p> <input [(ngModel)]="user!.email">
+ <!--- <p>Email:</p> <input [(ngModel)]="user!.email">
   <p>First name:</p> <input [(ngModel)]="user!.firstname">
   <p>Last name:</p> <input [(ngModel)]="user!.lastname">
   <p>Password:</p> <input [(ngModel)]="user!.password">
+  -->
+
+  <mat-form-field appearance="outline">
+    <mat-label> Email </mat-label>
+    <input matInput  [(ngModel)]="user!.email" required #tmp_name="ngModel">
+
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label> First name </mat-label>
+    <input matInput  [(ngModel)]="user!.firstname" required #tmp_name="ngModel">
+
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label> Last name </mat-label>
+    <input matInput  [(ngModel)]="user!.lastname" required #tmp_name="ngModel">
+
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label> Password </mat-label>
+    <input matInput  [(ngModel)]="user!.password" required type="password" #tmp_name="ngModel">
+
+  </mat-form-field>
+  <br>
   <p>-----------------------------------------------</p>
   <p>Permissions</p>
-
   <div *ngFor="let pp of permissions_string; let i=index" class="col-md-4 checkboxes">
     <label>
       <input type="checkbox" [(ngModel)]="permissions_selected[i]" (change)="onCheckChange($event)" class="my_checkbox">

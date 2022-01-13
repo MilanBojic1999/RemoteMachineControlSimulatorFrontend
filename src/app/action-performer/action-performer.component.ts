@@ -39,8 +39,8 @@ export class ActionPerformerComponent implements OnInit {
 
 
   sendAction(){
-    this.dialogRef.close()
 
+    this.close();
     let full_time = ""
 
     if(this.time) {
@@ -52,26 +52,42 @@ export class ActionPerformerComponent implements OnInit {
 
     switch (this.data.actionName) {
       case 'create':{
-        this.service.insert(this.data.machineName,full_time).subscribe(()=>{
+        this.service.insert(this.data.machineName,full_time).subscribe((res)=>{
+          console.log(res);
           this.close();
-        });
+        },
+          error => {
+            this.close(error)
+          });
         break;
       }
       case 'start':{
-        this.service.start(this.data.machId,full_time).subscribe(()=>{
+        this.service.start(this.data.machId,full_time).subscribe((res)=>{
+          console.log(res);
           this.close();
+        },
+    error => {
+            this.close(error)
         });
         break;
       }
       case 'stop':{
-        this.service.stop(this.data.machId,full_time).subscribe(()=>{
+        this.service.stop(this.data.machId,full_time).subscribe((res)=>{
+          console.log(res);
           this.close();
+        },
+        error => {
+          this.close(error)
         });
         break;
       }
       case 'restart':{
-        this.service.restart(this.data.machId,full_time).subscribe(()=>{
+        this.service.restart(this.data.machId,full_time).subscribe((res)=>{
+          console.log(res);
           this.close();
+        },
+    error => {
+          this.close(error);
         });
         break;
       }
@@ -100,8 +116,11 @@ export class ActionPerformerComponent implements OnInit {
     console.log(this.date.value.time)
   }
 
-  close(){
-    this.dialogRef.close()
+  close(massage?:string){
+    if(massage)
+      this.dialogRef.close(massage)
+    else
+      this.dialogRef.close(true)
   }
 
 

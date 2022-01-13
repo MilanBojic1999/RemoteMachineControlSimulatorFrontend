@@ -10,10 +10,10 @@ import {FormControl} from "@angular/forms";
 })
 export class InsertMachComponent implements OnInit {
 
-  name:FormControl;
+  name:string;
 
   constructor(public dialog:MatDialog) {
-    this.name = new FormControl('')
+    this.name = '';
   }
 
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class InsertMachComponent implements OnInit {
   openDialog(){
     const dialog = this.dialog.open(ActionPerformerComponent,{
         width: '400px',
-        data: {actionName:'create',machId:1,machineName:this.name.value}
+        data: {actionName:'create',machId:1,machineName:this.name}
     });
 
     dialog.afterClosed().subscribe(() => {

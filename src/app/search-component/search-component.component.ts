@@ -37,30 +37,38 @@ export class SearchComponentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  search(){
-    console.log(this.name.value,this.status.value,this.dateFrom.value,this.dateTo.value)
-    let critics:searchCriteria[] = []
-    if (this.name.value){
+  search() {
+    console.log(this.name.value, this.status.value, this.dateFrom.value, this.dateTo.value)
+    let critics: searchCriteria[] = []
+    if (this.name.value) {
       critics.push({key: "name", value: this.name.value})
     }
 
-    if (this.status.value){
+    if (this.status.value) {
       critics.push({key: 'status', value: this.status.value})
     }
-    if (this.dateFrom.value){
-      let date_txt = this.pipe.transform(this.dateFrom.value,'dd-MM-yyyy')
-      critics.push({key: 'dateFrom',value: date_txt})
+    if (this.dateFrom.value) {
+      let date_txt = this.pipe.transform(this.dateFrom.value, 'dd-MM-yyyy')
+      critics.push({key: 'dateFrom', value: date_txt})
     }
-    if (this.dateTo.value){
-      let date_txt = this.pipe.transform(this.dateTo.value,'dd-MM-yyyy')
-      critics.push({key:'dateTo', value: date_txt})
+    if (this.dateTo.value) {
+      let date_txt = this.pipe.transform(this.dateTo.value, 'dd-MM-yyyy')
+      critics.push({key: 'dateTo', value: date_txt})
     }
     console.log(critics)
-    this.service.search(critics).subscribe(res => {
-      console.log(res)
-      this.onSearch.emit(res);
-      this.dialogRef.close();
-    })
+    if (critics.length == 0) {
+      this.service.searchAll().subscribe(res => {
+        console.log(res)
+        this.onSearch.emit(res);
+        this.dialogRef.close();
+      })
+    } else {
+      this.service.search(critics).subscribe(res => {
+        console.log(res)
+        this.onSearch.emit(res);
+        this.dialogRef.close();
+      })
+    }
   }
 
 

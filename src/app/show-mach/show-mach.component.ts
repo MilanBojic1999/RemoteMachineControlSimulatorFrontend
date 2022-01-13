@@ -63,13 +63,15 @@ export class ShowMachComponent implements OnInit {
     if(this.selectedMachine)
       id = this.selectedMachine.id;
 
-    const dialog = this.dialog.open(ActionPerformerComponent,{
+    const dialogg = this.dialog.open(ActionPerformerComponent,{
       width: '400px',
       data: {actionName:name,machId:id,machineName:''}
     });
 
-    dialog.afterClosed().subscribe(() => {
-      console.log("Why")
+    dialogg.afterClosed().subscribe((res) => {
+      console.log("Why ",res)
+      if(res != true)
+        this.snackBar.open(res,"OK")
     })
   }
 

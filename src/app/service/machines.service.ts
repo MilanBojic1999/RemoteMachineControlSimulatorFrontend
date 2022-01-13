@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
-import {throwError} from "rxjs";
+import {Observable, throwError} from "rxjs";
 import {catchError} from "rxjs/operators";
 import {ErrorMsg, Machines, searchCriteria} from "../models/model";
 
@@ -18,8 +18,12 @@ export class MachinesService {
   }
 
   private static handleError(error:HttpErrorResponse){
-    console.log(error.status)
-    return throwError(error.message)
+    try {
+      console.log('lol', error.error['msg'])
+      return throwError(error.error['msg'])
+    }catch (gre){
+      return throwError(error.error)
+    }
   }
 
   insert(name:string,date:string){
@@ -35,7 +39,8 @@ export class MachinesService {
 
     return this.httpClient.post<boolean>(path,body,{
       headers: new HttpHeaders().set('Authorization',jwt)
-        .set("Content-Type","application/json")
+        .set("Content-Type","application/json"),
+
     }).pipe(catchError(MachinesService.handleError));
   }
 

@@ -19,8 +19,8 @@ export class UseroService {
   }
 
   private static handleError(error:HttpErrorResponse){
-    console.log(error.status)
-    return throwError("somzhing happ")
+    console.log('wow',error.error)
+    return throwError(error.error)
   }
 
   login(email:string,password:string){

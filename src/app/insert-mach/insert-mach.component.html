@@ -2,8 +2,14 @@
 
 <mat-form-field appearance="standard">
   <mat-label> Name </mat-label>
-  <input matInput [formControl]="name">
+  <input matInput  [(ngModel)]="name" required #tmp_name="ngModel">
+
 </mat-form-field>
+<div *ngIf="tmp_name.invalid && (tmp_name.dirty || tmp_name.touched)" class="alert myerr">
+  <div *ngIf="tmp_name.errors?.['required']">
+    Name is required.
+  </div>
+</div>
 <br>
 
 <button (click)="openDialog()"> Insert </button>
